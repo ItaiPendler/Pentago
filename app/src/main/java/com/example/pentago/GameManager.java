@@ -1,16 +1,21 @@
 package com.example.pentago;
 
+import android.content.Context;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 
 public class GameManager {
-
+    private final String saveFileName ="saveFile";
     protected Board board;
     protected int currentPlayer;
     private GameUI gameUI;
@@ -42,13 +47,15 @@ public class GameManager {
 
     public void saveGame(){
         try {
-            FileOutputStream fos = new FileOutputStream("a file");
+            FileOutputStream fos = gameUI.openFileOutput(saveFileName, Context.MODE_PRIVATE);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
             BufferedWriter writer = new BufferedWriter(osw);
-
-            writer.append(this.board.toString() + ";");
-            writer.append(this.currentPlayer + ";");
-            writer.append(this.gameUI.getPlayers());
+            String boardString = this.board.toString();
+            writer.append(boardString + ";");
+            String currentPlayerString = String.valueOf(this.currentPlayer);
+            writer.append(currentPlayerString + ";");
+            String players = this.gameUI.getPlayers();
+            writer.append(players +"\n");
 
             writer.close();
             osw.close();
@@ -64,7 +71,7 @@ public class GameManager {
         String strLine, board="", currentPlayer="1", players="misho.mishoacher";
         String [] fields;
         try {
-            FileInputStream fis = new FileInputStream("a file");
+            FileInputStream fis = gameUI.openFileInput(saveFileName);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader reader = new BufferedReader(isr);
 
@@ -84,6 +91,8 @@ public class GameManager {
         this.board = new Board(board);
         this.currentPlayer = Integer.parseInt(currentPlayer);
         this.gameUI.setPlayers(players);
+        this.gameUI.drawBoard(this.board);
+        this.gameUI.markPlayer(this.currentPlayer);
     }
 
 

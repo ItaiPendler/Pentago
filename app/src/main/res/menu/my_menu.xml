@@ -4,4 +4,12 @@
     <item
         android:id="@+id/restart"
         android:title="Restart" />
+
+    <item
+        android:id="@+id/save"
+        android:title="save" />
+
+    <item
+        android:id="@+id/load"
+        android:title="load" />
 </menu>

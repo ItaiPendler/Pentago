@@ -1,5 +1,7 @@
 package com.example.pentago;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import java.util.Arrays;
@@ -15,9 +17,10 @@ public class Board {
     }
 
     public Board (String boardString){
-        String [] boardStringRows = boardString.split("\n");
+        this.gameBoard = new int[MisparShurot][MisparAmudot];// מאתחל את המערך
+        String[] boardStringRows = boardString.split("n");
         for (int i =0; i< boardStringRows.length; i++) {
-            String [] rowCells = boardStringRows[i].split(".");
+            String [] rowCells = boardStringRows[i].split("\\.");
             this.gameBoard[i] = stringToInt(rowCells);
         }
     }
@@ -214,13 +217,14 @@ public class Board {
     @NonNull
     @Override
     public String toString() {
-        StringBuilder string = new StringBuilder();
+        String string = "";
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[i].length; j++) {
-                string.append('.' + gameBoard[i][j]);
+                string+=String.valueOf(gameBoard[i][j])+".";
             }
-            string.append("\n");
+            string+="n";
         }
-        return string.toString();
+
+        return string;
     }
 }

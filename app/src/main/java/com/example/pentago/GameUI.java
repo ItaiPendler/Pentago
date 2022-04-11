@@ -56,8 +56,15 @@ public class GameUI extends AppCompatActivity implements View.OnClickListener {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int idNivchar = item.getItemId();
-        if (idNivchar == R.id.restart) {//האם כפתור האיפוס נלחץ?
-            GameMgr.restart();
+        switch(idNivchar){
+            case R.id.restart:
+                break;
+            case R.id.save:
+                this.GameMgr.saveGame();
+                break;
+            case R.id.load:
+                this.GameMgr.loadGame();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -173,9 +180,14 @@ public class GameUI extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void setPlayers(String players){
-        String[] playerArray = players.split(".");
+        String[] playerArray = players.split("\\.");
         this.name1 = playerArray[0];
         this.name2 = playerArray[1];
+
+        TextView playerName1 = findViewById(R.id.playerName1);
+        playerName1.setText(name1);
+        TextView playerName2 = findViewById(R.id.playerName2);
+        playerName2.setText(name2);
     }
 
 }

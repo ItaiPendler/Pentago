@@ -176,7 +176,7 @@ public class GameUI extends AppCompatActivity implements View.OnClickListener {
     }
 
     public String getPlayers(){
-        return this.name1+"."+this.name2;
+        return this.name1+"."+this.name2;// מחזירים את השמות של השחקנים מופרדים בנקודה
     }
 
     public void setPlayers(String players){

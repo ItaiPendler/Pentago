@@ -220,11 +220,13 @@ public class Board {
         String string = "";
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[i].length; j++) {
-                string+=String.valueOf(gameBoard[i][j])+".";
+                string+=String.valueOf(gameBoard[i][j])+".";// מוסיפים למחרוזת שאנו יוצרים את הערך של התא ובסוף נקודה(זה מסמל סיום תא)
             }
-            string+="n";
+            string+="n";//מוסיפים את האות N בסוף כל שורה בקובץ (היא מסמלת ירידת שורה בלוח)
         }
 
-        return string;
+        return string;// בסוף יצא לנו משהו כמו:
+        //0.0.0.0.0.0n0.0.0.0.0.0n0.0.0.0.0.0n
     }
+
 }

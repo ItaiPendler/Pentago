@@ -2,6 +2,7 @@ package com.example.pentago;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -45,25 +46,31 @@ public class GameManager {
         return false;
     }
 
-    public void saveGame(){
-        try {
-            FileOutputStream fos = gameUI.openFileOutput(saveFileName, Context.MODE_PRIVATE);
-            OutputStreamWriter osw = new OutputStreamWriter(fos);
-            BufferedWriter writer = new BufferedWriter(osw);
-            String boardString = this.board.toString();
-            writer.append(boardString + ";");
-            String currentPlayerString = String.valueOf(this.currentPlayer);
-            writer.append(currentPlayerString + ";");
-            String players = this.gameUI.getPlayers();
-            writer.append(players +"\n");
+    // שומר את המשחק לקובץ טקסט שנראה כך:
+    // 0.0.0.0.0.0n0.0.0.0.0.0n0.0.0.0.0.0n;1;name1.name2;
+    public void saveGame() {
+        try { // קוד שעלול לגרום לאפליקציה לקרוס
+            FileOutputStream fos = gameUI.openFileOutput(saveFileName, Context.MODE_PRIVATE);// לנסות למצוא את הקובץ שלנו
+            OutputStreamWriter osw = new OutputStreamWriter(fos); // בונים אובייקט שיתן לנו לכתוב לקובץ
+            BufferedWriter writer = new BufferedWriter(osw); // בונים אובייקט שיכתוב לקובץ
 
-            writer.close();
-            osw.close();
-            fos.close();
-        } catch (FileNotFoundException e) {
+            String boardString = this.board.toString();//הופכים את הלוח למחרוזת שנוכל לשמור בקובץ
+            writer.append(boardString + ";");// שומרים את הלוח בקובץ ומוסיפים נקודה פסיק לסימול סוף חלק
+
+            String currentPlayerString = String.valueOf(this.currentPlayer);// הופך את המספר של השחקן הנוכחי למחרוזת שנשמור בקובץ
+            writer.append(currentPlayerString + ";");// כותבים את השם של השחקן הנוכחי לקובץ
+
+            String players = this.gameUI.getPlayers();// משיגים את שמות השחקנים במחרוזת שנשמור לקובץ
+            writer.append(players + "\n");// כותבים את שמות השחקנים לקובץ
+            // אנו כותבים \n בסוף השורה האחרונה כדי להראות שנגמר הקובץ
+
+            writer.close(); //  לשמור את הקובץ
+            osw.close(); //  לשמור את הקובץ
+            fos.close();// לשמור את הקובץ
+            Toast.makeText(this.gameUI, "המשחק נשמר", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) { // אילו שגיאות היו
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Toast.makeText(this.gameUI, "המשחק לא נשמר", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -180,10 +180,11 @@ public class GameUI extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void setPlayers(String players){
-        String[] playerArray = players.split("\\.");
+        String[] playerArray = players.split("\\.");// נפצל לפי נקודה (צריך את הסלאש כדי להגיד שזה נקודה ולא המשמעות בתכנות)
         this.name1 = playerArray[0];
         this.name2 = playerArray[1];
 
+        // מעדכן את המסך בשמות החדשים
         TextView playerName1 = findViewById(R.id.playerName1);
         playerName1.setText(name1);
         TextView playerName2 = findViewById(R.id.playerName2);

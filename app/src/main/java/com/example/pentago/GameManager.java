@@ -75,31 +75,35 @@ public class GameManager {
     }
 
     public void loadGame(){
-        String strLine, board="", currentPlayer="1", players="misho.mishoacher";
-        String [] fields;
-        try {
-            FileInputStream fis = gameUI.openFileInput(saveFileName);
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader reader = new BufferedReader(isr);
+        String strLine; // חלקי המידע לפני הפיצול
+        String board="";// הלוח אם נמחק מהקובץ
+        String currentPlayer = "1";// השחקן הנוכחי אם נמחק מהקובץ
+        String players="מישהו.מישהו אחר"; // שמות השחקנים חלופיים למקרה שהשמות המקוריים נמחקו
+        String [] fields; // חלקי המידע אחרי פיצול
+        try { // קוד שעלול לגרום לאפליקציה לקרוס
+            FileInputStream fis = gameUI.openFileInput(saveFileName);// נחפש את הקובץ שבו שמרנו במצב קריאה
+            InputStreamReader isr = new InputStreamReader(fis); // בונים אובייקט שיתן לנו לקרוא את הקובץ
+            BufferedReader reader = new BufferedReader(isr); // בונים אובייקט שיקרא את הקובץ
 
             strLine = reader.readLine();
-            if(strLine!=null){
-                fields = strLine.split(";");
-                board = fields[0];
-                currentPlayer = fields[1];
-                players = fields[2];
+            if(strLine!=null){// אם הקובץ לא ריק
+                fields = strLine.split(";"); // תפצל את השורה כל פעם שיש ;
+                board = fields[0];//לוח המשחק
+                currentPlayer = fields[1];// השחקן הנוכחי
+                players = fields[2]; // שמות השחקנים
             }
-            reader.close();
-            isr.close();
-            fis.close();
-        }catch (Exception e){
+            reader.close(); // שומר את הקובץ בלי שינויים
+            isr.close(); // שומר את הקובץ בלי שינויים
+            fis.close(); // שומר את הקובץ בלי שינויים
+        }catch (Exception e){// מטפל בשגיאות אם היו
             e.printStackTrace();
         }
-        this.board = new Board(board);
-        this.currentPlayer = Integer.parseInt(currentPlayer);
-        this.gameUI.setPlayers(players);
-        this.gameUI.drawBoard(this.board);
-        this.gameUI.markPlayer(this.currentPlayer);
+
+        this.board = new Board(board);// מכניסים את הלוח מהקובץ למשחק שלנו
+        this.currentPlayer = Integer.parseInt(currentPlayer); // הופכים את מספר השחקן הנוכחי מstring לint
+        this.gameUI.setPlayers(players); // מחליפים את שמות השחקנים בשמות מהקובץ
+        this.gameUI.drawBoard(this.board);// לצייר מחדש את הלוח
+        this.gameUI.markPlayer(this.currentPlayer);// מסמנים את השחקן הנוכחי
     }
 
 

@@ -18,9 +18,10 @@ public class Board {
 
     public Board (String boardString){
         this.gameBoard = new int[MisparShurot][MisparAmudot];// מאתחל את המערך
-        String[] boardStringRows = boardString.split("n");
-        for (int i =0; i< boardStringRows.length; i++) {
-            String [] rowCells = boardStringRows[i].split("\\.");
+
+        String[] boardStringRows = boardString.split("n"); // מפצלים את השורה לכמה שורות
+        for (int i =0; i< boardStringRows.length; i++) {// עבור כל שורה
+            String [] rowCells = boardStringRows[i].split("\\.");// מורידים את הנקודה שבין כל תא
             this.gameBoard[i] = stringToInt(rowCells);
         }
     }
@@ -28,9 +29,9 @@ public class Board {
     private int[] stringToInt(String [] row){
         int[] array = new int[row.length];
         for (int i = 0; i < array.length; i++) {
-            array[i] = Integer.parseInt(row[i]);
+            array[i] = Integer.parseInt(row[i]); // הופכים כל תא למספר
         }
-        return array;
+        return array; // מחזירים את השורה כשהכל מספרים
     }
 
     // אתחול הלוח

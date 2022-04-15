@@ -3,13 +3,15 @@
 
     <item
         android:id="@+id/restart"
-        android:title="Restart" />
+        android:title="התחל מחדש" />
+    <item
+        android:id="@+id/animation"
+        android:title="אנימציה" />
 
     <item
         android:id="@+id/save"
-        android:title="save" />
-
+        android:title="שמור" />
     <item
         android:id="@+id/load"
-        android:title="load" />
+        android:title="טען משחק קודם" />
 </menu>

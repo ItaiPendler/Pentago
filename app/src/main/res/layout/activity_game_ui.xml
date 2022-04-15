@@ -246,7 +246,8 @@
                 android:id="@+id/tableRow4"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:visibility="visible">
 
                 <Button
                     android:id="@+id/button3_0"
@@ -306,7 +307,8 @@
                 android:id="@+id/tableRow5"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:visibility="visible">
 
                 <Button
                     android:id="@+id/button4_0"
@@ -367,7 +369,8 @@
                 android:id="@+id/tableRow6"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:visibility="visible">
 
                 <Button
                     android:id="@+id/button5_0"
@@ -452,7 +455,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="chooseBoardToTurn"
-                android:text="Turn Top Left" />
+                android:text="סובב לוח מימיןלמעלה " />
 
             <Button
                 android:id="@+id/b2"
@@ -460,7 +463,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="chooseBoardToTurn"
-                android:text="Turn Bottom Left" />
+                android:text="סובב לוח מימין  למטה" />
 
         </LinearLayout>
 
@@ -475,7 +478,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="chooseBoardToTurn"
-                android:text="Turn Top Right" />
+                android:text="סובב לוח משמאל למעלה" />
 
             <Button
                 android:id="@+id/b4"
@@ -483,7 +486,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="chooseBoardToTurn"
-                android:text="Turn Bottom Right" />
+                android:text="סובב לוח משמאל למטה" />
         </LinearLayout>
     </LinearLayout>
 
@@ -500,7 +503,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="turnBoard"
-            android:text="closewise" />
+            android:text="נגד כיוון השעון" />
 
         <Button
             android:id="@+id/coutner_clockwise"
@@ -508,7 +511,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="turnBoard"
-            android:text="coutner clockwise" />
+            android:text="עם כיוון השעון" />
     </LinearLayout>
 
 </LinearLayout>

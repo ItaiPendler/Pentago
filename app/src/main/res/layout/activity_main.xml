@@ -36,7 +36,7 @@
             android:layout_height="35dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Name" />
 
         <TextView
             android:id="@+id/textView3"
@@ -50,7 +50,7 @@
             android:layout_height="35dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Name" />
 
         <Button
             android:id="@+id/button"

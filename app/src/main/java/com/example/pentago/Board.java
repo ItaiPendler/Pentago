@@ -1,10 +1,6 @@
 package com.example.pentago;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
-
-import java.util.Arrays;
 
 public class Board {
     public static final int MisparShurot = 6;
@@ -55,18 +51,18 @@ public class Board {
     }
 
     public void turnBoard(int boardChosenToTurn, int turnDirection){
-        int [][] mat = new int[3][3];
+        int [][] mat = new int[3][3]; //יצירת לוח נוסף שנמצא בצד שבו הלוח יסתובב
         int[][] Arrynew;
-        CopyMatrix(mat, boardChosenToTurn-1);
-        if(turnDirection==1)
+        CopyMatrix(mat, boardChosenToTurn-1);// מעתיקה לmat (הלוח החדש שמסתובב) את הלוח שנבחר
+        if(turnDirection==1)// אם הכיוון הנבחר הוא עם כיוון השעון אז לסובב ימינה, אחרת לסובב שמאלה
             Arrynew=rotateMatrixRight(mat);
         else
             Arrynew=rotateMatrixLeft(mat);
 
-        PasteMatrix(Arrynew,boardChosenToTurn-1);
+        PasteMatrix(Arrynew,boardChosenToTurn-1);// להדביק את הלוח המסובב בחזרה במקום
     }
 
-    public void CopyMatrix(int[][] mat, int BoardNum) {
+    public void CopyMatrix(int[][] mat, int BoardNum) { // העתקת כל אחד מארבעת הלוחות ללוח שנמצא מחוץ למשחק ובו הלוח מסתובב
         int halfBoardLength = 3;
         int fullBoardLength = halfBoardLength * 2;
         switch (BoardNum) {
@@ -103,7 +99,7 @@ public class Board {
         }
     }
 
-    public void PasteMatrix(int[][] mat, int BoardNum) {
+    public void PasteMatrix(int[][] mat, int BoardNum) { // החזרת הלוח המועתק והמסובב למקומו במשחק
         int halfBoardLength = 3;
         int fullBoardLength = halfBoardLength * 2;
         switch (BoardNum) {
@@ -140,8 +136,7 @@ public class Board {
         }
     }
 
-    public int[][] rotateMatrixRight(int[][] matrix) {
-        /* W and H are already swapped */
+    public int[][] rotateMatrixRight(int[][] matrix) { // סיבוב הלוח ימינה על ידי העתקת כל כפתור למיקום החדש שלו בלוח
         int w = matrix.length;
         int h = matrix[0].length;
         int[][] ret = new int[h][w];
@@ -153,8 +148,7 @@ public class Board {
         return ret;
     }
 
-    public int[][] rotateMatrixLeft(int[][] matrix) {
-        /* W and H are already swapped */
+    public int[][] rotateMatrixLeft(int[][] matrix) {// סיבוב הלוח שמאלה על ידי העתקת כל כפתור למיקום החדש שלו בלוח
         int w = matrix.length;
         int h = matrix[0].length;
         int[][] ret = new int[h][w];
@@ -214,7 +208,6 @@ public class Board {
         }
         return false;
     }
-
     @NonNull
     @Override
     public String toString() {
@@ -229,5 +222,6 @@ public class Board {
         return string;// בסוף יצא לנו משהו כמו:
         //0.0.0.0.0.0n0.0.0.0.0.0n0.0.0.0.0.0n
     }
+
 
 }

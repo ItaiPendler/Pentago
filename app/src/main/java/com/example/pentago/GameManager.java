@@ -1,22 +1,18 @@
 package com.example.pentago;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
 
 public class GameManager {
-    private final String saveFileName ="saveFile";
+
+    private final String saveFileName ="saveFile";// שם הקובץ שנשמור
     protected Board board;
     protected int currentPlayer;
     private GameUI gameUI;
@@ -46,6 +42,7 @@ public class GameManager {
         return false;
     }
 
+
     // שומר את המשחק לקובץ טקסט שנראה כך:
     // 0.0.0.0.0.0n0.0.0.0.0.0n0.0.0.0.0.0n;1;name1.name2;
     public void saveGame() {
@@ -53,7 +50,8 @@ public class GameManager {
             FileOutputStream fos = gameUI.openFileOutput(saveFileName, Context.MODE_PRIVATE);// לנסות למצוא את הקובץ שלנו
             OutputStreamWriter osw = new OutputStreamWriter(fos); // בונים אובייקט שיתן לנו לכתוב לקובץ
             BufferedWriter writer = new BufferedWriter(osw); // בונים אובייקט שיכתוב לקובץ
-
+            writer.write("");
+            writer.flush();
             String boardString = this.board.toString();//הופכים את הלוח למחרוזת שנוכל לשמור בקובץ
             writer.append(boardString + ";");// שומרים את הלוח בקובץ ומוסיפים נקודה פסיק לסימול סוף חלק
 
@@ -116,7 +114,7 @@ public class GameManager {
     }
 
     public boolean turnBoard(int boardChosenToTurn, int turnDirection){
-        board.turnBoard(boardChosenToTurn, turnDirection);
+        board.turnBoard(boardChosenToTurn, turnDirection); //סיבוב הלוח
         boolean didWin =board.Checkwin(currentPlayer);
         gameUI.drawBoard(board);
         currentPlayer = currentPlayer*-1;// מחליפה את השחקן
